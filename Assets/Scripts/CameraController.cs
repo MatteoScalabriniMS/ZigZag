@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -9,8 +10,15 @@ public class CameraController : MonoBehaviour
 
     [HideInInspector]
     public bool gameOver;
+    
+    public static CameraController Current;
 
     private Vector3 _offset; // distance between ball and camera
+
+    private void Awake()
+    {
+        Current = this;
+    }
 
     // Start is called before the first frame update
     private void Start()

@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class PlatformSpawner : MonoBehaviour
 {
@@ -7,6 +9,11 @@ public class PlatformSpawner : MonoBehaviour
     private Vector3 _platformPosition;
 
     private float _edgeSize;
+
+    [HideInInspector]
+    public bool gameOver;
+
+    public static PlatformSpawner Current;
 
     private void SpawnX()
     {
@@ -30,7 +37,17 @@ public class PlatformSpawner : MonoBehaviour
             SpawnZ();
         
     }
-    
+
+    public void StartSpawn()
+    {
+        InvokeRepeating(nameof(RandomSpawner), 2f, 0.2f); // starts to invoke RandomSpawner after 2 seconds and every 02 seconds
+    }
+
+    private void Awake()
+    {
+        Current = this;
+    }
+
     // Start is called before the first frame update
     private void Start()
     {
@@ -42,10 +59,16 @@ public class PlatformSpawner : MonoBehaviour
         {
             RandomSpawner();
         }
+        
+        StartSpawn();
     }
 
     // Update is called once per frame
     private void Update()
     {
+        if (gameOver)
+        {
+            CancelInvoke(nameof(RandomSpawner));
+        }
     }
 }
