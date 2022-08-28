@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlatformSpawner : MonoBehaviour
@@ -22,6 +20,17 @@ public class PlatformSpawner : MonoBehaviour
         Instantiate(platform, _platformPosition, Quaternion.identity);
     }
 
+    private void RandomSpawner()
+    {
+        int rand = Random.Range(0, 2);
+
+        if (rand == 0)
+            SpawnX();
+        else
+            SpawnZ();
+        
+    }
+    
     // Start is called before the first frame update
     private void Start()
     {
@@ -29,10 +38,9 @@ public class PlatformSpawner : MonoBehaviour
 
         _edgeSize = platform.transform.localScale.x;
 
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < 20; i++)
         {
-            SpawnX();
-            SpawnZ();
+            RandomSpawner();
         }
     }
 
