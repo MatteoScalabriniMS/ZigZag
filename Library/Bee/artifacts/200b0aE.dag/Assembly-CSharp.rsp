@@ -358,6 +358,7 @@
 "Assets/Scripts/BallController.cs"
 "Assets/Scripts/CameraController.cs"
 "Assets/Scripts/ControlTrigger.cs"
+"Assets/Scripts/PlatformSpawner.cs"
 -langversion:9.0
 
 /deterministic
